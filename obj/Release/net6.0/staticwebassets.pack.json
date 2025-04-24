@@ -1,0 +1,401 @@
+{
+  "Files": [
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\obj\\Release\\net6.0\\scopedcss\\projectbundle\\WEB_SHOW_WRIST_STRAP.bundle.scp.css",
+      "PackagePath": "staticwebassets\\WEB_SHOW_WRIST_STRAP.bundle.scp.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\WEB_SHOW_WRIST_STRAP.Parameters.xml",
+      "PackagePath": "staticwebassets\\WEB_SHOW_WRIST_STRAP.Parameters.xml"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\WEB_SHOW_WRIST_STRAP.SetParameters.xml",
+      "PackagePath": "staticwebassets\\WEB_SHOW_WRIST_STRAP.SetParameters.xml"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\WEB_SHOW_WRIST_STRAP.SourceManifest.xml",
+      "PackagePath": "staticwebassets\\WEB_SHOW_WRIST_STRAP.SourceManifest.xml"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\WEB_SHOW_WRIST_STRAP.deploy-readme.txt",
+      "PackagePath": "staticwebassets\\WEB_SHOW_WRIST_STRAP.deploy-readme.txt"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\WEB_SHOW_WRIST_STRAP.deploy.cmd",
+      "PackagePath": "staticwebassets\\WEB_SHOW_WRIST_STRAP.deploy.cmd"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\WEB_SHOW_WRIST_STRAP.zip",
+      "PackagePath": "staticwebassets\\WEB_SHOW_WRIST_STRAP.zip"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\css\\history.css",
+      "PackagePath": "staticwebassets\\css\\history.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\css\\listview.css",
+      "PackagePath": "staticwebassets\\css\\listview.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\css\\site.css",
+      "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\Alarm1.png",
+      "PackagePath": "staticwebassets\\image\\Alarm1.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\IVI27.png",
+      "PackagePath": "staticwebassets\\image\\IVI27.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\IVI35.png",
+      "PackagePath": "staticwebassets\\image\\IVI35.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\IVI40.png",
+      "PackagePath": "staticwebassets\\image\\IVI40.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\IVI_Floor1 - Copy.png",
+      "PackagePath": "staticwebassets\\image\\IVI_Floor1 - Copy.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\IVI_Floor1.jpg",
+      "PackagePath": "staticwebassets\\image\\IVI_Floor1.jpg"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\IVI_Floor1.png",
+      "PackagePath": "staticwebassets\\image\\IVI_Floor1.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\IVI_Floor1old.png",
+      "PackagePath": "staticwebassets\\image\\IVI_Floor1old.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\IVI_Floor2 - Copy.png",
+      "PackagePath": "staticwebassets\\image\\IVI_Floor2 - Copy.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\IVI_Floor2.png",
+      "PackagePath": "staticwebassets\\image\\IVI_Floor2.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\LG_Electronics_logo.png",
+      "PackagePath": "staticwebassets\\image\\LG_Electronics_logo.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\Lge_Bk.png",
+      "PackagePath": "staticwebassets\\image\\Lge_Bk.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\New Text Document.txt",
+      "PackagePath": "staticwebassets\\image\\New Text Document.txt"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\back_login.png",
+      "PackagePath": "staticwebassets\\image\\back_login.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\download.png",
+      "PackagePath": "staticwebassets\\image\\download.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\image\\logo_baoan.png",
+      "PackagePath": "staticwebassets\\image\\logo_baoan.png"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\js\\site.js",
+      "PackagePath": "staticwebassets\\js\\site.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\LICENSE",
+      "PackagePath": "staticwebassets\\lib\\bootstrap"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.min.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-grid.rtl.min.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.min.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-reboot.rtl.min.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.min.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.min.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\css\\bootstrap.rtl.min.css.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.js.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.js.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.esm.min.js.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.js.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\lib\\bootstrap\\dist\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\chart\\chart-plugin.js",
+      "PackagePath": "staticwebassets\\lib\\chart\\chart-plugin.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\chart\\chart.js",
+      "PackagePath": "staticwebassets\\lib\\chart\\chart.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\chart\\chartjs-adapter-date-fns.js",
+      "PackagePath": "staticwebassets\\lib\\chart\\chartjs-adapter-date-fns.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\chart\\chartjs-adapter-luxon.js",
+      "PackagePath": "staticwebassets\\lib\\chart\\chartjs-adapter-luxon.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\chart\\chartjs-plugin-annotation.min.js",
+      "PackagePath": "staticwebassets\\lib\\chart\\chartjs-plugin-annotation.min.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\chart\\chartjs-plugin-zoom.js",
+      "PackagePath": "staticwebassets\\lib\\chart\\chartjs-plugin-zoom.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\chart\\chartjs-plugin-zoom.min.js",
+      "PackagePath": "staticwebassets\\lib\\chart\\chartjs-plugin-zoom.min.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\chart\\hammerjs.js",
+      "PackagePath": "staticwebassets\\lib\\chart\\hammerjs.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\chart\\luxon.js",
+      "PackagePath": "staticwebassets\\lib\\chart\\luxon.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation-unobtrusive\\jquery.validate.unobtrusive.min.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery-validation\\LICENSE.md",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\LICENSE.md"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery-validation\\dist\\additional-methods.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\additional-methods.min.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery-validation\\dist\\jquery.validate.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery-validation\\dist\\jquery.validate.min.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery\\LICENSE.txt",
+      "PackagePath": "staticwebassets\\lib\\jquery\\LICENSE.txt"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery\\dist\\jquery.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery\\dist\\jquery.min.js",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.js"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
+      "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "H:\\WEB_SHOW_WRIST_STRAP\\wwwroot\\sound\\alarm.mp3",
+      "PackagePath": "staticwebassets\\sound\\alarm.mp3"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.WEB_SHOW_WRIST_STRAP.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.build.WEB_SHOW_WRIST_STRAP.props",
+      "PackagePath": "build\\WEB_SHOW_WRIST_STRAP.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.WEB_SHOW_WRIST_STRAP.props",
+      "PackagePath": "buildMultiTargeting\\WEB_SHOW_WRIST_STRAP.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.buildTransitive.WEB_SHOW_WRIST_STRAP.props",
+      "PackagePath": "buildTransitive\\WEB_SHOW_WRIST_STRAP.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

@@ -1,0 +1,161 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using WEB_SHOW_WRIST_STRAP.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WEB_SHOW_WRIST_STRAP</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WEB_SHOW_WRIST_STRAP.styles.css" asp-append-version="true" />
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+
+<body onload="applySavedState()">
+
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <img class="navbar-brand" src="~/image/4P_logo.png?v=6" alt="Logo" height="50px" onclick="window.location = '@Url.Action("Index","Home")'">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                           
+                            <li class="nav-item">
+                                <a id="layoutLink" class="nav-link text-dark item-nav" href="#">Layout</a>
+                            </li>
+
+                            <!-- List View -->
+                            <li class="nav-item">
+                                <a id="listViewLink" class="nav-link text-dark item-nav" href="#">Detail</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link text-dark item-nav" asp-area="" asp-controller="History" asp-action="Index">History</a>
+                            </li>
+
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <li class="nav-item">
+                                    <a id="listPoint" class="nav-link text-dark item-nav" href="#">PointList</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark item-nav" asp-area="" asp-controller="ListLines" asp-action="Index">LineList</a>
+                                </li>
+                               
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark item-nav" asp-area="" asp-controller="ListPlcs" asp-action="Index">PLCList</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark item-nav" asp-area="" asp-controller="User" asp-action="Index">Users</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+                </div>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+    </header>
+
+    <div>
+        <main style="margin-right:50px;margin-left:50px" role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div style="margin-left:50px">
+            &copy; 2024 - BY BAOANAUTOMATION
+        </div>
+    </footer>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
+
+<script>
+    let isInitialLoad = true;
+
+    function updateView(selectedOption, shouldReload = true) {
+        let layoutLink = document.getElementById("layoutLink");
+        let listViewLink = document.getElementById("listViewLink");
+        let listPointLink = document.getElementById("listPoint");
+        let newUrl = "";  // Biến lưu URL mới
+
+        if (selectedOption === "WristStrap") {
+            layoutLink.href = '@Url.Action("Index", "Home")';
+            listViewLink.href = '@Url.Action("Index", "ListView")';
+            listPointLink.href = '@Url.Action("Index", "ListPoints")';
+
+           
+            if (window.location.pathname === '/Home/IndexLeakVol' ) {
+                newUrl = '/home/index'; 
+            }
+            if (window.location.pathname === '/ListPoint2') {
+                newUrl = '/ListPoints';  
+            }
+            if (window.location.pathname === '/ListView/IndexLeakVol') {
+                newUrl = '/ListView';
+            }
+            @* document.getElementById("option1").checked = true; *@
+        } else if (selectedOption === "LakeageVoltage") {
+            layoutLink.href = '@Url.Action("IndexLeakVol", "Home")';
+            listViewLink.href = '@Url.Action("IndexLeakVol", "ListView")';
+            listPointLink.href = '@Url.Action("Index", "ListPoint2")';
+
+            // Nếu URL hiện tại là layoutLink hoặc listPointLink, cập nhật URL
+            if (window.location.pathname === '/' || window.location.pathname === '/home/index') {
+                newUrl = '/Home/IndexLeakVol'; 
+            }
+            if (window.location.pathname === '/ListPoints') {
+                newUrl = '/ListPoint2';
+            }
+            if (window.location.pathname === '/ListView') {
+                newUrl = '/ListView/IndexLeakVol';
+                
+            }
+            @* document.getElementById("option2").checked = true; *@
+        }
+
+        // Lưu lại tùy chọn hiện tại vào localStorage
+        localStorage.setItem('selectedOption', selectedOption);
+
+        // Nếu URL cần được cập nhật, sử dụng pushState để thay đổi URL
+        if (newUrl) {
+            window.history.pushState({ path: newUrl }, '', newUrl);
+        }
+
+        // Reload lại trang nếu không phải lần đầu
+        if (shouldReload && !isInitialLoad) {
+            location.reload();
+        }
+    }
+
+    function applySavedState() {
+        const savedOption = localStorage.getItem('selectedOption');
+
+        if (savedOption) {
+            updateView(savedOption, false);  // Không reload lần tải đầu
+        } else {
+            updateView("WristStrap", false);  // Mặc định là WristStrap nếu không có tùy chọn đã lưu
+        }
+
+        isInitialLoad = false;  // Đặt cờ lần tải đầu tiên
+    }
+
+    // Khi trang được tải, kiểm tra trạng thái đã lưu và áp dụng
+    document.addEventListener('DOMContentLoaded', applySavedState);
+</script>
+

@@ -1,0 +1,170 @@
+﻿@model WEB_SHOW_WRIST_STRAP.Dataconfig;
+
+@{
+    int IDLINE = ViewBag.IdLine;
+    int? IDCLUSTER = ViewBag.IdCluster;
+    var lines = ViewBag.Lines as List<int>;
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" />
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Edit Layout Cluster</title>
+    <style>
+        .line-container {
+            position: relative;
+            display: inline-block;
+            height: auto;
+            border: 1px solid gray;
+            margin-right: 20px;
+            max-width: 1800px; /* Thêm giới hạn tối đa */
+        }
+
+            .line-container img {
+                max-width: 1800px;
+                width: auto;
+                height: auto;
+            }
+
+            /* Thêm style cho trường hợp idLine < 10 */
+            .line-container.full-width img {
+                width: 1800px !important;
+                max-width: none;
+            }
+
+        .point {
+            position: absolute;
+            color: white;
+            border-radius: 5px;
+            font-size: 20px;
+            text-align: center;
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.5);
+            cursor: move;
+        }
+
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h3 style="text-align:center">Edit Layout Cluster (Line @IDLINE)</h3>
+    </div>
+    <div>
+        <p>Leakage Voltage(V)</p>
+    </div>
+    <div class="home-container1" id="clayout">
+        @foreach (var idLine in lines)
+        {
+            <div class="line-container @(idLine < 10 ? "full-width" : "")" data-line-id="@idLine">
+                <div id="imgline_@idLine"></div>
+            </div>
+        }
+    </div>
+    <button id="saveBtn" class="btn-success animationbase" style="border-radius:3px;">Save</button>
+    <button id="backBtn" class="btn-primary animationbase" style="border-radius:3px;">Back</button>
+
+    <script>
+        const idLine = '@ViewBag.IdLine';
+        const lines = @Html.Raw(Json.Serialize(lines));
+
+        // Hàm khởi tạo
+        function Loadfirst() {
+            lines.forEach(idLine => {
+                let imgStyle = idLine < 10 ? 'width="1800px"' : 'height="135px"';
+                $(`#imgline_${idLine}`).html(`<img id="lineImage_${idLine}" ${imgStyle} src="/image/${idLine}.png?v=1.1"/>`);
+            });
+            loadEditablePoints();
+        }
+
+        let pointPositions = []; // Danh sách điểm và vị trí mới
+
+        // Tải và hiển thị điểm có thể kéo thả
+        function loadEditablePoints() {
+            $.ajax({
+                url: '/ListView/GetPointLine',
+                type: 'GET',
+                data: { idLine: idLine },
+                success: function (data) {
+                    data.forEach(point => {
+                        const top = point.topDetail != null ? point.topDetail : point.csstop;
+                        const left = point.leftDetail != null ? point.leftDetail : point.cssleft;
+
+                        let pointDiv = $(`<div class="point" data-id="${point.idPoint}" data-line="${point.idLine}">${point.idPoint}</div>`);
+                        pointDiv.css({
+                            top: top + "px",
+                            left: left + "px"
+                        });
+                        $(`.line-container[data-line-id="${point.idLine}"]`).append(pointDiv);
+
+                        // Kích hoạt kéo thả
+                        pointDiv.draggable({
+                            containment: `.line-container[data-line-id="${point.idLine}"]`,
+                            stop: function (event, ui) {
+                                const id = $(this).data('id');
+                                const lineId = $(this).data('line');
+                                const newTop = ui.position.top;
+                                const newLeft = ui.position.left;
+
+                                // Cập nhật vị trí vào danh sách cần lưu
+                                updatePointPosition(id, lineId, newTop, newLeft);
+                            }
+                        });
+                    });
+                },
+                error: function () {
+                    alert("Failed to load points.");
+                }
+            });
+        }
+
+        // Lưu vị trí điểm chỉnh sửa vào danh sách
+        function updatePointPosition(id, lineId, top, left) {
+            const index = pointPositions.findIndex(p => p.idPoint === id && p.idLine === lineId);
+            if (index !== -1) {
+                pointPositions[index].csstop = top;
+                pointPositions[index].cssleft = left;
+            } else {
+                pointPositions.push({ idLine: lineId, idPoint: id, csstop: top, cssleft: left });
+            }
+        }
+
+        // Gửi dữ liệu lưu về backend
+        function saveChanges() {
+            $.ajax({
+                url: '/ListView/UpdatePointPositions',
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(pointPositions),
+                success: function () {
+                    alert("Positions updated successfully!");
+                    window.location.href = '/ListView/Detail?IdLine=' + idLine;
+                },
+                error: function () {
+                    alert("Failed to update positions.");
+                }
+            });
+        }
+
+        // Sự kiện khi nhấn nút lưu
+        $("#saveBtn").click(function () {
+            saveChanges();
+        });
+
+        // Quay lại trang Detail
+        $("#backBtn").click(function () {
+            window.location.href = '/ListView/Detail?IdLine=' + idLine;
+        });
+
+        // Bắt đầu tải dữ liệu
+        $(document).ready(function () {
+            Loadfirst();
+        });
+    </script>
+</body>
+</html>

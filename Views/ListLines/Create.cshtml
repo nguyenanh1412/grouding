@@ -1,0 +1,188 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using WEB_SHOW_WRIST_STRAP.Data
+
+@model WEB_SHOW_WRIST_STRAP.Models.Entities.ListLine
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    ViewData["Title"] = "CREATE NEW LINE";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="row">
+    <div class="col-md-4">
+        <header class="header">
+            <h3>CREATE NEW LINE</h3>
+        </header>
+        <hr />
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="IdLine" class="control-label"></label>
+                <input asp-for="IdLine" class="form-control" />
+                <span asp-validation-for="IdLine" class="text-danger"></span>
+            </div>
+            @* <div class="form-group">
+                <label asp-for="IdIviLine" class="control-label"></label>
+                <input asp-for="IdIviLine" class="form-control" />
+                <span asp-validation-for="IdIviLine" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="NameLine" class="control-label"></label>
+                <input asp-for="NameLine" class="form-control" />
+                <span asp-validation-for="NameLine" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ListUser" class="control-label"></label>
+                <input asp-for="ListUser" readonly id="ListUsertxt" class="form-control" style="row-gap:" />
+
+                <div class="row" style="margin-block:5px">
+                    <span class="col-1" style="padding-block:5px;margin-block:5px">User:</span>
+                    <select class="col-6" style="padding-block:5px;margin-block:5px" id="cboxuser">
+                        @foreach (var Username in UserManager.Users)
+                        {
+                            <option value="@Username.UserName">@Username.UserName</option>
+                        }
+                    </select>
+                    <button type="button" class="col btn btn-info btn-space animation" style="margin-block:5px" onclick="AddUser()"> ADD </button>
+                    <button type="button" class="col btn btn-danger animation" style="margin-block:5px; margin-right:5px" onclick="DeleteUser()"> DELETE </button>
+                    <button type="button" class="col btn btn-danger animation" style="margin-block:5px; margin-right:12px" onclick="EditManual()"> EDIT </button>
+                </div>
+                <span asp-validation-for="ListUser" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Floor" class="control-label"></label>
+                <input hidden id="txtfloor" asp-for="Floor" class="form-control" />
+                <br />
+                <select style="padding-block:5px;margin-block:5px;width:100%" id="cboxfloor" onchange="OnchangeFloor(this.value)">
+                </select>
+                <span asp-validation-for="Floor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Note" class="control-label"></label>
+                <input asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Csstop" class="control-label"></label>
+                <input asp-for="Csstop" class="form-control" />
+                <span asp-validation-for="Csstop" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Cssleft" class="control-label"></label>
+                <input asp-for="Cssleft" class="form-control" />
+                <span asp-validation-for="Cssleft" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Csswidth" class="control-label"></label>
+                <input asp-for="Csswidth" class="form-control" />
+                <span asp-validation-for="Csswidth" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="Cssheight" class="control-label"></label>
+                <input asp-for="Cssheight" class="form-control" />
+                <span asp-validation-for="Cssheight" class="text-danger"></span>
+            </div>
+            <div class="form-group" hidden>
+                <label asp-for="TotalPointAlarm" class="control-label"></label>
+                <input asp-for="TotalPointAlarm" class="form-control" />
+                <span asp-validation-for="TotalPointAlarm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary btn-create animation" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn animation btn-back">Back to List</a>
+</div>
+
+<script>
+
+    const start = function CheckUser() {
+
+        let txtlsuser = document.getElementById("ListUsertxt");
+
+        let listuser = txtlsuser.value.split('|');
+
+        txtlsuser.value = "";
+
+        let cboxuser = document.getElementById("cboxuser");
+
+        listuser.forEach(function (user) {
+
+            if (cboxuser.innerHTML.includes(user)) {
+                if (txtlsuser.value != "") {
+                    txtlsuser.value += "|" + user;
+                }
+                else {
+                    txtlsuser.value += user;
+                }
+            }
+
+        });
+
+    }
+
+    function AddUser() {
+        let listuser = document.getElementById("ListUsertxt").value.split('|');
+        let useradd = document.getElementById("cboxuser").value;
+
+        if (listuser.indexOf(useradd) == -1) {
+            document.getElementById("ListUsertxt").value += (listuser.length > 1 || listuser[0] != "") ? "|" + useradd : useradd;
+        }
+        else {
+            alert("User already !");
+        }
+    }
+
+    function DeleteUser() {
+        let listuser = document.getElementById("ListUsertxt").value.split('|');
+        let useradd = document.getElementById("cboxuser").value;
+
+        if (listuser.indexOf(useradd) != -1) {
+            document.getElementById("ListUsertxt").value = "";
+            listuser.forEach(user => {
+                if (user != useradd) {
+                    if (document.getElementById("ListUsertxt").value != "") {
+                        document.getElementById("ListUsertxt").value += "|" + user;
+                    }
+                    else {
+                        document.getElementById("ListUsertxt").value += user;
+                    }
+                }
+            });
+
+        }
+        else {
+            alert("User is not in List!");
+        }
+    }
+
+    let txtfloor = document.getElementById("txtfloor");
+    let cboxfloor = document.getElementById("cboxfloor");
+
+    function EditManual() {
+        $("#ListUsertxt").removeAttr("readonly");
+    }
+
+    async function LoadcboxFloor() {
+        await sleep(500);
+        Allfloor.forEach(function (floor) {
+            cboxfloor.innerHTML += '<option value=' + floor.IdFloor + '>' + floor.NameFloor + '</option>'
+        });
+        if (Allfloor.length>0){
+            txtfloor.value = Allfloor[0].IdFloor;
+        }
+    }
+
+    function OnchangeFloor(idfloor) {
+        txtfloor.value = idfloor;
+    }
+
+    start();
+
+    LoadcboxFloor();
+</script>
