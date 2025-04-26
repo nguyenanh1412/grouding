@@ -10,5 +10,7 @@
         public int? TotalTime { get; set; }
         public int IdPoint { get; set; }
         public string SourceTable { get; set; }
+        //public int Status { get; set; }
+        public int RepairStatus { get; set; }
     }
 }

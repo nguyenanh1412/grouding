@@ -17,5 +17,6 @@ namespace WEB_SHOW_WRIST_STRAP.Models.Entities
         public double? OldValue { get; set; }
         public int? TotalTime { get; set; }
         public DateTime? TimeStop { get; set; }
+        public int Status { get; set; }
     }
 }

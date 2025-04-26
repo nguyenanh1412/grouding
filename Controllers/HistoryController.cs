@@ -394,7 +394,7 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
                     worksheet.Cells[i + 2, summaryStartColumn + 1].Value = data.NameLine;
                     worksheet.Cells[i + 2, summaryStartColumn + 2].Value = data.IdPoint;
                     worksheet.Cells[i + 2, summaryStartColumn + 3].Value = data.NamePoint;
-                    worksheet.Cells[i + 2, summaryStartColumn + 4].Value = data.TotalAlarmTime/60;
+                    worksheet.Cells[i + 2, summaryStartColumn + 4].Value = data.TotalAlarmTime / 60;
                     worksheet.Cells[i + 2, summaryStartColumn + 5].Value = data.ErrorCount;
                     using (var range = worksheet.Cells[i + 2, summaryStartColumn, i + 2, summaryStartColumn + 5])
                     {
@@ -419,7 +419,7 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
                 {
                     var data = errorSummaryByType[i];
                     worksheet.Cells[errorSummaryStartRow + i + 1, summaryStartColumn].Value = GetStatus(data.Alarm);
-                    worksheet.Cells[errorSummaryStartRow + i + 1, summaryStartColumn + 1].Value = data.TotalTime/60;
+                    worksheet.Cells[errorSummaryStartRow + i + 1, summaryStartColumn + 1].Value = data.TotalTime / 60;
                     worksheet.Cells[errorSummaryStartRow + i + 1, summaryStartColumn + 2].Value = data.ErrorCount;
                     using (var range = worksheet.Cells[errorSummaryStartRow + i + 1, summaryStartColumn, errorSummaryStartRow + i + 1, summaryStartColumn + 2])
                     {
@@ -461,7 +461,7 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
                 // Pie chart for Total Alarm Time by Type
                 var pieChart2 = worksheet.Drawings.AddChart("TotalTimeByTypeChart", eChartType.Pie3D);
                 pieChart2.Title.Text = "Total Alarm Time by Type";
-                pieChart2.SetPosition(errorSummaryStartRow + errorSummaryByType.Count -5, 0, summaryStartColumn + 7, 0);
+                pieChart2.SetPosition(errorSummaryStartRow + errorSummaryByType.Count - 5, 0, summaryStartColumn + 7, 0);
                 pieChart2.SetSize(800, 400);
 
                 var pieSeries2 = pieChart2.Series.Add(worksheet.Cells[errorSummaryStartRow + 1, summaryStartColumn + 1, errorSummaryStartRow + errorSummaryByType.Count, summaryStartColumn + 1], worksheet.Cells[errorSummaryStartRow + 1, summaryStartColumn, errorSummaryStartRow + errorSummaryByType.Count, summaryStartColumn]);
@@ -703,7 +703,7 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
 
             if (int.TryParse(alarm, out int alarmCode))
             {
-               
+
                 switch (alarmCode)
                 {
                     case 0:
@@ -755,7 +755,8 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
                             TimeCheck = x.TimeCheck,
                             TotalTime = x.TotalTime,
                             IdPoint = x.IdPoint,
-                            SourceTable = "TotalData"
+                            SourceTable = "TotalData",
+                            RepairStatus = x.Status
                         })
                         .ToListAsync();
 
@@ -772,7 +773,8 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
                             TimeCheck = x.TimeCheck,
                             TotalTime = x.TotalTime,
                             IdPoint = x.IdPoint,
-                            SourceTable = "TotalData2"
+                            SourceTable = "TotalData2",
+                            RepairStatus = x.Status
                         })
                         .ToListAsync();
 
@@ -806,11 +808,49 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
                     // Lọc trùng lỗi trong vòng 1 phút
                     LsHistopAlarm = filteredResults
                         .GroupBy(x => new { x.IdPoint, x.IdLine, x.Alarm }) // Nhóm theo IdPoint, IdLine, Alarm
-                        .Select(g => g.OrderByDescending(x => x.TimeCheck) // Sắp xếp theo thời gian mới nhất
+                        .Select(g => g.OrderBy(x => x.TimeCheck) // Sắp xếp theo thời gian mới nhất
                                       .First())
                         .OrderByDescending(x => x.TimeCheck)
                         .Take(50)
+                        .Where(x =>
+                        {
+                            // Lấy ra bản ghi mới nhất
+                            var qr = _context.TotalData.Where(e => e.IdPoint == x.IdPoint && e.IdLine.ToString() == x.IdLine).OrderByDescending(e => e.TimeCheck).ToQueryString();
+                            var OKdata1 = _context.TotalData.Where(e => e.IdPoint == x.IdPoint && e.IdLine.ToString() == x.IdLine).OrderByDescending(e => e.TimeCheck).FirstOrDefault();
+                            if (OKdata1.Alarm == "0") // mếu bản ghi mới nhất mà OK thì ẩn luôn
+                            {
+                                return false;
+                            }
+                            return true;
+                        })
                         .ToList();
+
+                    // lấy bảng ListPoint 
+                    // Lấy listID point
+                    var listIDpoit = LsHistopAlarm.Select(x => x.IdPoint).ToList();
+                    var listIDline = LsHistopAlarm.Select(x => x.IdLine).ToList();
+                    var listPoint = _context.ListPoints.Where(e =>
+                        listIDpoit.Contains(e.IdPoint) && listIDline.Contains(e.IdLine.ToString())
+                    ).ToList();
+
+                    var listJoin = (from alarm in LsHistopAlarm
+                                    join point in _context.ListPoints
+                                    on new { alarm.IdPoint, alarm.IdLine }
+                                    equals new { point.IdPoint, IdLine = point.IdLine.ToString() }
+                                    select new TotalDataViewModel
+                                    {
+                                        IdLog = alarm.IdLog,
+                                        Alarm = alarm.Alarm,
+                                        IdLine = alarm.IdLine.ToString(),
+                                        Note = alarm.Note,
+                                        TimeCheck = alarm.TimeCheck,
+                                        TotalTime = (int)(DateTime.Now - alarm.TimeCheck).TotalSeconds,
+                                        //TotalTime = GetThoiGianThucHien(alarm.IdPoint, int.Parse(alarm.IdLine)),
+                                        IdPoint = alarm.IdPoint,
+                                        SourceTable = alarm.SourceTable,
+                                        RepairStatus = alarm.RepairStatus == 1 ? 1 : int.Parse(point.Type)
+                                    }).ToList();
+                    LsHistopAlarm = listJoin;
                 }
                 catch (Exception ex)
                 {
@@ -820,8 +860,104 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
 
             return LsHistopAlarm.ToJson();
         }
+        private int GetThoiGianThucHien(int idPoint, int idLine)
+        {
+            // Lấy ra bản ghi OK mới nhất
+            var qr = _context.TotalData.Where(x => x.IdPoint == idPoint && x.IdLine == idLine && x.Alarm == "0").OrderByDescending(x => x.TimeCheck).ToQueryString();
+            var OKdata1 = _context.TotalData.Where(x => x.IdPoint == idPoint && x.IdLine == idLine && x.Alarm == "0").OrderByDescending(x => x.TimeCheck).FirstOrDefault();
+            //var OKdata2 = _context.TotalData2.Where(x => x.IdPoint == idPoint && x.IdLine == idLine && x.Alarm == "1").OrderByDescending(x => x.TimeCheck).FirstOrDefault();
+            if (OKdata1 == null)
+            {
+                return 0;
+            }
+            // Lấy ra bản ghi Error đầu tiên tính từ thời gian OK đến hiện tại
+            var ErorData = _context.TotalData.Where(x => x.IdPoint == idPoint && x.IdLine == idLine && Alarmcode.Contains(x.Alarm ?? "") && x.TimeCheck > OKdata1.TimeCheck).OrderBy(x => x.TimeCheck).FirstOrDefault();
+            DateTime startTime = (ErorData?.TimeCheck) ?? DateTime.Now;
+            DateTime endTime = DateTime.Now;
 
+            return (int)(endTime - startTime).TotalSeconds;
 
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> UpdateRepairStatus(UpdateRepairedStatusViewModel input)
+        {
+            using var transaction = _context.Database.BeginTransaction();
+            var result = false;
+            try
+            {
+                // Lấy bản ghi cần cập nhật
+                // mặc định giá trị status của TotalData = = 1
+                // Chỉ có 2 giá trị 1: mặc định || 0 đang sửa || 2 sửa xong
+                // Nếu error -> repaidring chỉ update TotalData
+                // nếu repaidring -> repaired update cả TotalData và listPoint
+                var TotalData = _context.TotalData.FirstOrDefault(x => x.IdLog == input.id_log);
+
+                if (TotalData != null)
+                {
+                    var lspoint = _context.ListPoints.FirstOrDefault(x => x.IdPoint == TotalData.IdPoint && x.IdLine == TotalData.IdLine);
+                    if (input.status == 1) // đang chuyển từ error -> repaidring
+                    {
+                        TotalData.Status = 0;
+                        lspoint.Type = "2";
+                        // Thêm luôn 1 bản ghi mới thành công 
+                        _context.TotalData.Add(new TotalDatum()
+                        {
+                            IdPoint = TotalData.IdPoint,
+                            IdLine = TotalData.IdLine,
+                            TimeCheck = DateTime.Now,
+                            Value = 0,
+                            MinSpect = 0,
+                            MaxSpect = 1,
+                            Alarm = TotalData.Alarm,
+                            Note = null,
+                            OldValue = null,
+                            TotalTime = null,
+                            TimeStop = null,
+                            Status = 0
+                        });
+                    }
+                    else if (input.status == 2) // repaidring -> repaired
+                    {
+                        TotalData.Status = 2;
+                        lspoint.Type = "3";
+                        // Thêm luôn 1 bản ghi mới thành công 
+                        _context.TotalData.Add(new TotalDatum()
+                        {
+                            IdPoint = TotalData.IdPoint,
+                            IdLine = TotalData.IdLine,
+                            TimeCheck = DateTime.Now,
+                            Value = 0,
+                            MinSpect = 0,
+                            MaxSpect = 1,
+                            Alarm = "0",
+                            Note = null,
+                            OldValue = null,
+                            TotalTime = null,
+                            TimeStop = null ,
+                            Status = 1
+                        });
+                    }
+
+                    _context.SaveChanges(); // Lưu thay đổi vào DB
+                    transaction.Commit();   // Commit nếu không có lỗi
+                    result = true;
+                }
+                else
+                {
+                    result = false;
+                    // Không tìm thấy bản ghi -> rollback
+                    transaction.Rollback();
+                }
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback(); // Rollback nếu có lỗi
+                                        // Xử lý lỗi hoặc log ra
+            }
+
+            return Ok(new { success  = result});
+        }
 
         [Authorize()]
         [HttpPost]
@@ -830,7 +966,7 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
             if (LslineID == null) return null;
             List<TotalDatum> LsHistopTop = new List<TotalDatum>();
             DateTime Dtcheck;
-            if (LslineID.Length > 0 && DateTime.TryParse(timeckstart,out Dtcheck))
+            if (LslineID.Length > 0 && DateTime.TryParse(timeckstart, out Dtcheck))
                 try
                 {
                     var result = await _context.TotalData.Take(50).Where(x => (Alarmcode.Contains(x.Alarm) && LslineID.Contains(x.IdLine.ToString()) && x.TimeCheck >= Dtcheck)).OrderByDescending(x => x.IdLog).ToListAsync();
@@ -975,10 +1111,10 @@ namespace WEB_SHOW_WRIST_STRAP.Controllers
         public async Task<IActionResult> GetDataForChart(int idLine)
         {
             var timeCheckThreshold = DateTime.Now.AddDays(-1);
-              var historyData = await _context.TotalData
-                .Where(h => h.IdLine == idLine && h.TimeCheck > timeCheckThreshold && (Alarmcode.Contains(h.Alarm)))
-                .OrderByDescending(h => h.TimeCheck)
-                .ToListAsync();
+            var historyData = await _context.TotalData
+              .Where(h => h.IdLine == idLine && h.TimeCheck > timeCheckThreshold && (Alarmcode.Contains(h.Alarm)))
+              .OrderByDescending(h => h.TimeCheck)
+              .ToListAsync();
 
             return Json(historyData);
         }

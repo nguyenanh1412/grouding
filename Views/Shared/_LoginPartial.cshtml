@@ -81,7 +81,7 @@
             <!-- Modal body -->
             <div class="modal-body modal-body-custom">
                 <div class="tablealarmall">
-                    <table class="table table-striped">
+                    <table id="table-noti-error" class="table table-striped">
                         <thead>
                             <tr>
                                 <th>Time</th>
@@ -279,10 +279,12 @@
 
     function Clinknotifibtn() {
         document.getElementById("btnnotifi").innerHTML = '<span class="spinner-border spinner-border-sm"></span> Loading';
-
+            let tableNotiError = document.getElementById("table-noti-error")
+            tableNotiError.style.display = "none"
         $.post('@Url.Action("GetDataTopAlarmAll", "History")', { LslineID: UserlineID },
             function (input) {
-
+                console.log(input)
+                    tableNotiError.style.display = "block"
                 let lsHisAlram = JSON.parse(input);
 
                 let table = document.getElementById("dtalarmall");
@@ -324,8 +326,19 @@
                     let id_log = rowdt.IdLog;
                     let sourceTable = rowdt.SourceTable;
                     let repairStatus = rowdt.RepairStatus ?? null;
-                    let statusText = repairStatus === 1 ? "Repaired" : "Repairing";
-                    let btnClass = repairStatus === 1 ? "btn-success" : "btn-warning";
+                    let statusText;
+                    let btnClass;
+                    
+                    if (repairStatus === 1) {
+                        statusText = "Error";
+                        btnClass = "btn-danger";
+                    } else if (repairStatus === 2) {
+                        statusText = "Repairing"; 
+                        btnClass = "btn-warning";
+                    } else if (repairStatus === 3) {
+                        statusText = "Repaired";
+                        btnClass = "btn-success"; 
+                    }
 
                     // HTML cho bảng gốc có onclick
                     let htmlrowtb = `
@@ -336,7 +349,7 @@
                             <td class="rowstsalarm">${StrAlarm}</td>
                             <td>${TotalTime}</td>
                             <td>
-                                <button id="btnRepair${id_log}" class="btn ${btnClass}" onclick="updateRepairStatus(${id_log}, '${sourceTable}', ${repairStatus})">
+                                <button id="btnRepair${id_log}" class="btn ${btnClass}" onclick="updateRepairStatus(event,${id_log}, '${sourceTable}', ${repairStatus})">
                                     ${statusText}
                                 </button>
                             </td>
@@ -377,16 +390,20 @@
             }
         );
     }
-    function updateRepairStatus(id_log, sourceTable, currentStatus) {
-       
-      
-
-        $.post('@Url.Action("UpdateRepairStatus", "History")', { id_log: id_log, status: newStatus, sourceTable: sourceTable }, function (response) {
+    function updateRepairStatus(event, id_log, sourceTable, currentStatus) {
+        event.stopPropagation();
+        console.log(event)
+            // nếu đã repaired thì thông báo và k làm gì cả
+            if(currentStatus == 3) {
+                alert("Point is repaired");
+                return
+            }
+            $.post('@Url.Action("UpdateRepairStatus", "History")', { id_log: id_log, status: currentStatus, sourceTable: sourceTable }, function (response) {
             if (response.success) {
-                let btn = document.getElementById(`btnRepair${id_log}`);
-                btn.innerText = statusText;
-                btn.className = `btn ${btnClass}`;
-                btn.setAttribute("onclick", `updateRepairStatus(${id_log}, '${sourceTable}', ${newStatus})`);
+                // let btn = document.getElementById(`btnRepair${id_log}`);
+                // btn.innerText = statusText;
+                // btn.className = `btn ${btnClass}`;
+                //         btn.setAttribute("onclick", `updateRepairStatus(event,${id_log}, '${sourceTable}', ${response.status})`);
                 Clinknotifibtn();
             } else {
                 alert("Lỗi khi cập nhật trạng thái!");

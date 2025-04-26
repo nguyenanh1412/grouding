@@ -499,6 +499,7 @@ namespace WEB_SHOW_WRIST_STRAP.Models.Entities
                 entity.Property(e => e.TotalTime).HasColumnName("total_time");
 
                 entity.Property(e => e.Value).HasColumnName("value");
+                entity.Property(e => e.Status).HasColumnName("status");
             });
             modelBuilder.Entity<TotalDatum2>(entity =>
             {
@@ -536,6 +537,8 @@ namespace WEB_SHOW_WRIST_STRAP.Models.Entities
                 entity.Property(e => e.TotalTime).HasColumnName("total_time");
 
                 entity.Property(e => e.Value).HasColumnName("value");
+                entity.Property(e => e.Status).HasColumnName("status");
+
             });
             OnModelCreatingPartial(modelBuilder);
         }
